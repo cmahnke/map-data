@@ -56,7 +56,7 @@ jobs:
             MAX_ZOOM=13
             FILTER_BUILDINGS=some
           tags: |
-            ghcr.io/cmahnke/map-action/data/central-europe:latest
+            ghcr.io/cmahnke/map-data/data/central-europe:latest
 
   build_goettingen:
     name: Push goettingen Docker image to GitHub Packages
@@ -100,7 +100,7 @@ jobs:
             EXCLUDE_LAYERS=""
             FILTER_BUILDINGS=false
           tags: |
-            ghcr.io/cmahnke/map-action/data/goettingen:latest
+            ghcr.io/cmahnke/map-data/data/goettingen:latest
 
   build_sylt:
     name: Push sylt Docker image to GitHub Packages
@@ -144,4 +144,4 @@ jobs:
             EXCLUDE_LAYERS=""
             FILTER_BUILDINGS=false
           tags: |
-            ghcr.io/cmahnke/map-action/data/sylt:latest
+            ghcr.io/cmahnke/map-data/data/sylt:latest

@@ -55,4 +55,4 @@ jobs:
             COVERAGE=central-europe-ext.json
             MAX_ZOOM=13
           tags: |
-            ghcr.io/cmahnke/map-action/data/central-europe-ext:latest
+            ghcr.io/cmahnke/map-data/data/central-europe-ext:latest
