@@ -1,0 +1,9 @@
+docker/data/scripts/tmp
+docker/data/scripts/coastline
+docker/data/scripts/coastline.tmp
+docker/data/scripts/landcover
+docker/data/scripts/core
+docker/data/scripts/*.osm.pbf
+docker/data/scripts/lake_centerline
+docker/data/scripts/natural_earth_vector
+**/TODO
