@@ -55,6 +55,7 @@ jobs:
           build-args: |
             MAX_ZOOM=14
             FILTER_BUILDINGS=some
+            LANATILER_IMAGE=ghcr.io/cmahnke/projektemacher-maps/planetiler:latest-data
           tags: |
             ghcr.io/cmahnke/map-data/central-europe:latest
 
