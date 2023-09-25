@@ -8,7 +8,7 @@ ARG FORMAT=files
 # Use this to reduce maximum zoom level
 ARG MAX_ZOOM=14
 #Exclude layers
-ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label
+ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,transportation,transportation_name
 # Filter buildings
 ARG FILTER_BUILDINGS=true
 # Which Planatiler image to use
