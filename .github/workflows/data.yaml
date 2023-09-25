@@ -53,7 +53,7 @@ jobs:
           context: .
           file: docker/data/Dockerfile
           build-args: |
-            MAX_ZOOM=13
+            MAX_ZOOM=14
             FILTER_BUILDINGS=some
           tags: |
             ghcr.io/cmahnke/map-data/central-europe:latest

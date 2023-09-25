@@ -1,11 +1,5 @@
 # syntax=docker/dockerfile:experimental
 
-FROM ghcr.io/cmahnke/map-tools/planetiler:latest-data AS planetiler
-FROM ghcr.io/cmahnke/map-tools/osmium:latest AS osmium
-FROM ghcr.io/cmahnke/map-tools/osmctools:latest AS osmctools
-
-FROM alpine:3.18 as builder
-
 ARG COVERAGE=central-europe.json
 #tile_compression=gzip (the tile compression, one of [none, gzip])
 ARG TILE_COMPRESSION=gzip
@@ -17,6 +11,14 @@ ARG MAX_ZOOM=14
 ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label
 # Filter buildings
 ARG FILTER_BUILDINGS=true
+# Which Planatiler image to use
+ARG PLANATILER_IMAGE=ghcr.io/cmahnke/map-tools/planetiler:latest-data
+
+FROM ${PLANATILER_IMAGE} AS planetiler
+FROM ghcr.io/cmahnke/map-tools/osmium:latest AS osmium
+FROM ghcr.io/cmahnke/map-tools/osmctools:latest AS osmctools
+
+FROM alpine:3.18 as builder
 
 ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.82-program_options lz4-libs geos zip jq" \
     BUILD_DIR=/tmp/build \
