@@ -61,18 +61,18 @@ jobs:
           docker rm -f planetiler
           docker rmi ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
 
-      - name: Run data genetator
+      - name: Run data generator
         run: |
           cd deploy/europe/scripts
           bash -x ./run.sh conf.sh
 
-      - name: Buildah Action
+      - name: Using Buildah Action to create image
         uses: redhat-actions/buildah-build@v2
         with:
           image: ghcr.io/cmahnke/map-data/europe
           tags: latest
-        content: |
-          deploy/europe/scripts/tiles
+          content: |
+            deploy/europe/scripts/tiles
 
       - name: Push To GitHub packages
         uses: redhat-actions/push-to-registry@v2
