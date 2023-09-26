@@ -1,9 +1,5 @@
 name: Publish Data
 
-permissions:
-  packages: write
-  contents: write
-
 on:
 #  workflow_run:
 #    workflows: ["Publish Docker images"]
@@ -14,7 +10,13 @@ on:
   schedule:
     - cron:  '30 4 * * 1'
 
-# TODO: Also remove  Java
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+  contents: write
 
 jobs:
   build_central-europe:

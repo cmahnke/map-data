@@ -1,9 +1,5 @@
 name: Publish Central Europe extended Data
 
-permissions:
-  packages: write
-  contents: write
-
 on:
   workflow_run:
     workflows: ["Publish Data"]
@@ -13,6 +9,14 @@ on:
   workflow_dispatch:
   schedule:
     - cron:  '30 10 * * 1'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+  contents: write
 
 jobs:
   build_central-europe-ext:

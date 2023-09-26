@@ -1,13 +1,17 @@
 name: Publish Europe Data
 
-permissions:
-  packages: write
-  contents: write
-
 on:
   workflow_dispatch:
   schedule:
     - cron:  '30 10 * * 2'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+  contents: write
 
 jobs:
   build_central-europe-ext:
@@ -47,6 +51,8 @@ jobs:
       - name: Provide dependencies
         run: |
           sudo apt-get install -y temurin-17-jdk
+          sudo apt-get install -y python3-pip
+          sudo pip install openmaptiles-tools
 
           sudo chmod +w /opt
           docker pull ghcr.io/cmahnke/map-tools/osmium:ubuntu-22.04
