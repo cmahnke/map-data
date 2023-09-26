@@ -11,7 +11,7 @@ on:
 
 jobs:
   build_central-europe-ext:
-    name: Push central-europe-ext Docker image to GitHub Packages
+    name: Build Europe map
     runs-on: ubuntu-latest
     steps:
       - name: Free some disk space
@@ -39,6 +39,8 @@ jobs:
           logout: false
       - name: Provide dependencies
         run: |
+          sudo apt-get install -y temurin-17-jdk
+
           sudo chmod +w /opt
           docker pull ghcr.io/cmahnke/map-tools/osmium:ubuntu-22.04
           docker create --name osmium ghcr.io/cmahnke/map-tools/osmium:ubuntu-22.04
