@@ -17,7 +17,7 @@ jobs:
       - name: Free some disk space
         run: |
           df -h
-          sudo apt-get remove -y '^dotnet-.*' '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' '^postgresql-.*' '^gfortran-.*' '^cmake-.*' '^aspnetcore-.*' '^clang-.*' '^cpp-.*' '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell
+          sudo apt-get remove -y '^dotnet-.*' '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' '^postgresql-.*' '^gfortran-.*' '^cmake-.*' '^aspnetcore-.*' '^clang-.*' '^cpp-.*' '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell
           sudo rm -rf /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/graalvm/ /usr/local/share/powershell /usr/local/lib/android /usr/local/lib/node_modules /usr/local/.ghcup/ /usr/share/dotnet/ /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda
           sudo apt-get autoremove -y
           sudo apt-get clean
@@ -51,6 +51,12 @@ jobs:
           docker cp osmctools:/opt/osmctools /opt/osmctools
           docker rm -f osmctools
           docker rmi ghcr.io/cmahnke/map-tools/osmctools:ubuntu-22.04
+
+          docker pull ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
+          docker create --name planetiler ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
+          docker cp planetiler:/opt/planetiler /opt/planetiler
+          docker rm -f planetiler
+          docker rmi ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
 
 #      - name: Run data genetator
 #        run: |
