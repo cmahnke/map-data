@@ -25,6 +25,10 @@ jobs:
           docker rmi -f node:14 node:16 node:18 node:14-alpine node:16-alpine node:18-alpine ubuntu:18.04 ubuntu:20.04 ubuntu:22.04 debian:10 debian:11 buildpack-deps:buster buildpack-deps:bullseye
           df -h
 
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          build-mount-path: /home/runner/work/map-data/storage
       - name: Check out the repo
         uses: actions/checkout@v4
         with:
@@ -63,7 +67,8 @@ jobs:
 
       - name: Run data generator
         run: |
-          cd deploy/europe/scripts
+          mv deploy/europe/* /home/runner/work/map-data/storage
+          cd /home/runner/work/map-data/storage/scripts
           bash -x ./run.sh conf.sh
 
       - name: Using Buildah Action to create image
