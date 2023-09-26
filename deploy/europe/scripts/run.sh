@@ -20,6 +20,5 @@ mkdir -p $SOURCE_DIR $TILES_DIR
 
 for SCRIPT in [0-9]*; do
   echo "Running $SCRIPT"
-  bash -x $SCRIPT
-  #./$SCRIPT
+  ./$SCRIPT
 done
