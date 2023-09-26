@@ -29,6 +29,8 @@ jobs:
         uses: easimon/maximize-build-space@master
         with:
           build-mount-path: /home/runner/work/map-data/storage
+          temp-reserve-mb: 10240
+
       - name: Check out the repo
         uses: actions/checkout@v4
         with:
@@ -69,7 +71,36 @@ jobs:
         run: |
           mv deploy/europe/* /home/runner/work/map-data/storage
           cd /home/runner/work/map-data/storage/scripts
-          bash -x ./run.sh conf.sh
+          ./run.sh conf.sh
+          mv /home/runner/work/map-data/storage/scripts/tiles /home/runner/work/map-data/map-data/
+          cd /home/runner/work/map-data/map-data/
+
+          # Undo volume mounts
+          sudo swapoff -a
+          sudo umount -f /home/runner/work/map-data/storage
+          sudo lvchange -an /dev/mapper/buildvg-swap
+          sudo lvchange -an /dev/mapper/buildvg-buildlv
+          sudo lvremove -f /dev/mapper/buildvg-swap
+          sudo lvremove -f /dev/mapper/buildvg-buildlv
+          sudo vgremove buildvg
+
+          echo "lo pv.img"
+          sudo losetup -j /pv.img
+          echo "lo tmp-pv.img"
+          sudo losetup -j /mnt/tmp-pv.img
+
+          echo "Running pvremove"
+          sudo pvremove `sudo losetup -j /pv.img |cut -d ':' -f 1`
+          sudo pvremove `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
+          echo "Running losetup"
+          sudo losetup -d `sudo losetup -j /pv.img |cut -d ':' -f 1`
+          sudo losetup -d `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
+
+          sudo rm -f /pv.img /mnt/tmp-pv.img
+          # Recreate swap
+          sudo fallocate -l 4G /mnt/swapfile
+          sudo mkswap /mnt/swapfile
+          sudo swapon /mnt/swapfile
 
       - name: Using Buildah Action to create image
         uses: redhat-actions/buildah-build@v2
