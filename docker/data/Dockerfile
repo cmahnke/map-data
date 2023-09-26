@@ -17,7 +17,7 @@ ARG FORMAT=files
 # Use this to reduce maximum zoom level
 ARG MAX_ZOOM=14
 #Exclude layers
-ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,transportation,transportation_name
+ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,transportation_name
 # Filter buildings
 ARG FILTER_BUILDINGS=true
 
@@ -57,7 +57,6 @@ RUN --mount=target=/mnt/build-context \
       WO_BUILDINGS=$(./remove-buildings.sh ./tmp/merged.osm.pbf) && \
       echo "Removed buildings from '$WO_BUILDINGS' $(stat -c %s $WO_BUILDINGS)" && \
       rm ./tmp/merged.osm.pbf && \
-      echo "pre if" && \
       if test "$FILTER_BUILDINGS" == 'some' ; then \
         echo "Merge remaining buildings back" && \
         /opt/osmium/bin/osmium merge -O --fsync $WO_BUILDINGS $BUILDINGS -o data/sources/${COVERAGE}.osm.pbf && \
