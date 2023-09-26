@@ -30,12 +30,13 @@ jobs:
         with:
           submodules: true
           fetch-depth: 1
+
       - name: Login to GitHub Packages Docker Registry
-        uses: docker/login-action@v3.0.0
+        uses: redhat-actions/podman-login@v1
         with:
-          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
           logout: false
       - name: Provide dependencies
         run: |
@@ -60,5 +61,22 @@ jobs:
           docker rm -f planetiler
           docker rmi ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
 
-#      - name: Run data genetator
-#        run: |
+      - name: Run data genetator
+        run: |
+          cd deploy/europe/scripts
+          bash -x ./run.sh conf.sh
+
+      - name: Buildah Action
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ghcr.io/cmahnke/map-data/europe
+          tags: latest
+        content: |
+          deploy/europe/scripts/tiles
+
+      - name: Push To GitHub packages
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ghcr.io/cmahnke/map-data/europe
+          tags: latest
+          registry: ghcr.io
