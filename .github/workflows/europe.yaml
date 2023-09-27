@@ -22,7 +22,8 @@ jobs:
         run: |
           df -h
           sudo apt-get update
-          sudo apt-get purge -y '^dotnet-.*' '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' '^postgresql-.*' '^gfortran-.*' '^cmake-.*' '^aspnetcore-.*' '^clang-.*' '^cpp-.*' '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*' '^java-.*' '^linux-modules-.*' '^libllvm.*' microsoft-edge-stable google-cloud-sdk azure-cli google-chrome-stable firefox powershell
+          sudo apt-get purge -y '^dotnet-.*' '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' '^postgresql-.*' '^gfortran-.*' '^cmake-.*' '^aspnetcore-.*' '^clang-.*' '^cpp-.*' '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*' '^java-.*' '^linux-modules-.*' '^libllvm.*' microsoft-edge-stable azure-cli google-chrome-stable firefox powershell
+          dpkg -P google-cloud-sdk
           sudo rm -rf /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/graalvm/ /usr/local/share/powershell /usr/local/lib/android /usr/local/lib/node_modules /usr/local/.ghcup/ /usr/share/dotnet/ /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda /opt/az
           docker rmi -f node:14 node:16 node:18 node:14-alpine node:16-alpine node:18-alpine ubuntu:18.04 ubuntu:20.04 ubuntu:22.04 debian:10 debian:11 buildpack-deps:buster buildpack-deps:bullseye
           sudo apt-get autoremove -y
