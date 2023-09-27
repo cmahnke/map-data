@@ -4,6 +4,7 @@ export SOURCE_DIR=data/sources
 export INPUT=$SOURCE_DIR/input.o5m
 export POSTPROCESSED=$SOURCE_DIR/input.pbf
 export TILES_DIR=tiles
+export WGET=wget
 export OSMCONVERT="./osmconvert"
 export OSMFILTER="./osmfilter"
 export OSMIUM="/opt/homebrew/bin/osmium"
