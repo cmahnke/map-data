@@ -7,7 +7,7 @@ export TILES_DIR=tiles
 export OSMCONVERT="/opt/osmctools/bin/osmconvert"
 export OSMFILTER="/opt/osmctools/bin/osmfilter"
 export OSMIUM="/opt/osmium/bin/osmium"
-export MBUTIL="/opt/homebrew/bin/mb-util"
+export MBUTIL="mb-util"
 export COVERAGE=`basename $INPUT_URL`
 export PLANETILER="java -Xmx5g -jar /opt/planetiler/planetiler-*-with-deps.jar"
 
