@@ -20,4 +20,4 @@ if [ $? -ne 0 ] ; then
 fi
 
 rm -f $POSTPROCESSED
-$MBUTIL --silent --image_format=pbf data/output.mbtiles $TILES
+$MBUTIL --image_format=pbf data/output.mbtiles $TILES
