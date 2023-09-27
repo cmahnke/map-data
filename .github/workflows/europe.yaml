@@ -50,7 +50,7 @@ jobs:
           logout: false
       - name: Provide dependencies
         run: |
-          sudo apt-get install -y "temurin-17-jdk expat libgdal30 libbz2-1.0 zlib1g liblz4-1 libgeos-c1v5 libboost-program-options1.74.0 libprotobuf23"
+          sudo apt-get install -y temurin-17-jdk expat libgdal30 libbz2-1.0 zlib1g liblz4-1 libgeos-c1v5 libboost-program-options1.74.0 libprotobuf23
           sudo apt-get install -y python3-pip
           sudo pip install openmaptiles-tools
 
@@ -72,6 +72,8 @@ jobs:
           docker cp planetiler:/opt/planetiler /opt/planetiler
           docker rm -f planetiler
           docker rmi ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
+
+          df -h
 
       - name: Validate dependencies
         run: |
