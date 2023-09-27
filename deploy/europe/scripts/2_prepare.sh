@@ -49,7 +49,11 @@ echo "Extracting remaining buildings from $INPUT to $OUTPUT_BUILDINGS"
 $OSMFILTER $INPUT --keep='building=yes and historic=*' --keep='building=yes and name=*' --keep='building=yes and tourism=artwork' --keep='building=yes and architect*=*' --keep='building:architecture=*' |$OSMCONVERT - --out-pbf -o=$OUTPUT_BUILDINGS
 echo "Created buildings at '$OUTPUT_BUILDINGS' `$SIZE_CMD $OUTPUT_BUILDINGS`"
 $OSMFILTER $INPUT --drop-tags='building=' | $OSMCONVERT - --out-pbf -o=$OUTPUT_WO_BUILDINGS
+echo "Removing $INPUT"
 rm $INPUT
+
+echo "Storage Statistics"
+df -h
 
 # Use `osmium` if there isn't enough memory
 #$OSMIUM tags-filter -i -o $OUT $1 a/building

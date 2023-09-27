@@ -29,6 +29,10 @@ if [ ! -r "$INPUT" ] ; then
   echo "Download and convert $INPUT_URL to $INPUT"
   #curl -s "$INPUT_URL" |$OSMCONVERT - -o=$INPUT
   $WGET -O- "$INPUT_URL" |$OSMCONVERT - -o=$INPUT
+  echo "Downloaded $INPUT_URL to $INPUT `$SIZE_CMD $INPUT`"
 else
   echo "$INPUT exists at `pwd`"
 fi
+
+echo "Storage Statistics"
+df -h
