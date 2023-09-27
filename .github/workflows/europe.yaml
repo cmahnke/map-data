@@ -49,9 +49,8 @@ jobs:
           logout: false
       - name: Provide dependencies
         run: |
-          sudo apt-get install -y temurin-17-jdk expat libgdal30 libbz2-1.0 zlib1g liblz4-1 libgeos-c1v5 libboost-program-options1.74.0 libprotobuf23
-          sudo apt-get install -y python3-pip
-          sudo pip install openmaptiles-tools
+          sudo apt-get install -y temurin-17-jdk expat libgdal30 libgeos-c1v5 libboost-program-options1.74.0 python3-pip libprotobuf23
+          sudo pip install openmaptiles-tools mbutil
 
           sudo chmod +w /opt
           docker pull ghcr.io/cmahnke/map-tools/osmium:ubuntu-22.04
