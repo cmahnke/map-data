@@ -73,7 +73,7 @@ jobs:
           docker rm -f planetiler
           docker rmi ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
 
-      - name: Validate dependencies:
+      - name: Validate dependencies
         run: |
           /opt/osmctools/bin/osmconvert
           /opt/osmctools/bin/osmfilter
