@@ -34,11 +34,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
       - name: Provide dependencies
         run: |
           sudo apt-get install -y expat libgdal30 libgeos-c1v5 libboost-program-options1.74.0 python3 python3-pip libprotobuf23
           sudo pip install -r deploy/europe/requirements.txt
-          #sudo update-alternatives --set java /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
 
           sudo chmod +w /opt
           docker pull ghcr.io/cmahnke/map-tools/osmium:ubuntu-22.04
@@ -84,12 +86,6 @@ jobs:
           build-mount-path: /home/runner/work/map-data/storage
           temp-reserve-mb: 10240
           root-reserve-mb: 256
-
-      - name: Check out the repo
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 1
 
       - name: Login to GitHub Packages Docker Registry
         uses: redhat-actions/podman-login@v1
