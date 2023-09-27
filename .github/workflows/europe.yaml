@@ -23,8 +23,6 @@ jobs:
           df -h
           sudo apt-get purge -y '^dotnet-.*' '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' '^postgresql-.*' '^gfortran-.*' '^cmake-.*' '^aspnetcore-.*' '^clang-.*' '^cpp-.*' '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' azure-cli  google-chrome-stable firefox powershell
           sudo rm -rf /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/graalvm/ /usr/local/share/powershell /usr/local/lib/android /usr/local/lib/node_modules /usr/local/.ghcup/ /usr/share/dotnet/ /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda
-          sudo apt-get autoremove -y
-          sudo apt-get clean
           docker rmi -f node:14 node:16 node:18 node:14-alpine node:16-alpine node:18-alpine ubuntu:18.04 ubuntu:20.04 ubuntu:22.04 debian:10 debian:11 buildpack-deps:buster buildpack-deps:bullseye
           df -h
 
@@ -50,8 +48,9 @@ jobs:
           logout: false
       - name: Provide dependencies
         run: |
-          sudo apt-get install -y temurin-17-jdk expat libgdal30 libgeos-c1v5 libboost-program-options1.74.0 python3-pip libprotobuf23
+          sudo apt-get install -y temurin-17-jdk expat libgdal30 libgeos-c1v5 libboost-program-options1.74.0 python3 python3-pip libprotobuf23
           sudo pip install -r deploy/europe/requirements.txt
+          sudo update-alternatives --set java /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
 
           sudo chmod +w /opt
           docker pull ghcr.io/cmahnke/map-tools/osmium:ubuntu-22.04
@@ -72,6 +71,9 @@ jobs:
           docker rm -f planetiler
           docker rmi ghcr.io/cmahnke/projektemacher-maps/planetiler:latest
 
+          sudo apt-get purge -y python3-pip
+          sudo apt-get autoremove -y
+          sudo apt-get clean
           df -h
 
       - name: Validate dependencies
