@@ -79,7 +79,7 @@ jobs:
           /opt/osmctools/bin/osmconvert
           /opt/osmctools/bin/osmfilter
           /opt/osmium/bin/osmium
-          mb-util
+          mb-util -h
           java -Xmx5g -jar /opt/planetiler/planetiler-*-with-deps.jar
           sudo rm -rf /var/lib/apt/lists/*
 
