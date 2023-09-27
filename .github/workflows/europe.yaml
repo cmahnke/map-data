@@ -76,6 +76,7 @@ jobs:
 
       - name: Validate dependencies
         run: |
+          set +x
           /opt/osmctools/bin/osmconvert
           /opt/osmctools/bin/osmfilter
           /opt/osmium/bin/osmium
