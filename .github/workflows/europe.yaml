@@ -63,6 +63,14 @@ jobs:
 
           df -h
 
+      - name: Free more space
+        run: |
+          sudo apt-get purge -y python3-pip
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          sudo rm -rf /var/lib/apt/lists/*
+          df -h
+
       - name: Validate dependencies
         run: |
           set +x
@@ -71,14 +79,6 @@ jobs:
           /opt/osmium/bin/osmium
           mb-util -h
           java -Xmx5g -jar /opt/planetiler/planetiler-*-with-deps.jar --help
-
-      - name: Free more space
-        run: |
-          sudo apt-get purge -y python3-pip
-          sudo apt-get autoremove -y
-          sudo apt-get clean
-          sudo rm -rf /var/lib/apt/lists/*
-          df -h
 
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
