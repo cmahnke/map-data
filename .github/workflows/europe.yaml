@@ -25,7 +25,6 @@ jobs:
           sudo rm -rf /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/graalvm/ /usr/local/share/powershell /usr/local/lib/android /usr/local/lib/node_modules /usr/local/.ghcup/ /usr/share/dotnet/ /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda
           sudo apt-get autoremove -y
           sudo apt-get clean
-          sudo rm -rf /var/lib/apt/lists/*
           docker rmi -f node:14 node:16 node:18 node:14-alpine node:16-alpine node:18-alpine ubuntu:18.04 ubuntu:20.04 ubuntu:22.04 debian:10 debian:11 buildpack-deps:buster buildpack-deps:bullseye
           df -h
 
@@ -82,6 +81,7 @@ jobs:
           /opt/osmium/bin/osmium
           mb-util
           java -Xmx5g -jar /opt/planetiler/planetiler-*-with-deps.jar
+          sudo rm -rf /var/lib/apt/lists/*
 
       - name: Run data generator
         run: |
