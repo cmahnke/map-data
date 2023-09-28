@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eo pipefail 
+
 if [ -z "$OSMCONVERT" ] ; then
   OSMCONVERT=osmconvert
 fi

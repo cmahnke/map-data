@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eo pipefail 
+
 if [ -n "$1" ] ; then
   echo "Loading $1"
   . $1
