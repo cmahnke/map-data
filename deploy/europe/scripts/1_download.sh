@@ -43,4 +43,5 @@ else
 fi
 
 echo "Storage Statistics"
+ls -R `dirname $INPUT`
 df -h

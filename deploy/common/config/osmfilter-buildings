@@ -1,0 +1,4 @@
+-v
+
+--keep=
+building=yes and ( historic=* or name=* or tourism=artwork or architect:*=* or architect=* or building:architecture=* )
