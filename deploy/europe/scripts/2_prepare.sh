@@ -52,7 +52,7 @@ fi
 echo "Extracting remaining buildings from $INPUT to $OUTPUT_BUILDINGS"
 $OSMFILTER $INPUT --parameter-file=../config/osmfilter-buildings |$OSMCONVERT - --out-pbf -o=$OUTPUT_BUILDINGS
 echo "Created buildings at '$OUTPUT_BUILDINGS' `$SIZE_CMD $OUTPUT_BUILDINGS`"
-$OSMFILTER $INPUT --drop='building=' | $OSMCONVERT - --out-pbf -o=$OUTPUT_WO_BUILDINGS
+$OSMFILTER $INPUT --parameter-file=../config/osmfilter-clean | $OSMCONVERT - --out-pbf -o=$OUTPUT_WO_BUILDINGS
 echo "Removing $INPUT"
 rm $INPUT
 
