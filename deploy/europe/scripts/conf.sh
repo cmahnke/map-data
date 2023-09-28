@@ -1,4 +1,5 @@
 export INPUT_URL=https://download.geofabrik.de/europe-latest.osm.pbf
+# Use ',' to seperate coords
 export BBOX=""
 export SOURCE_DIR=data/sources
 export INPUT=$SOURCE_DIR/input.o5m
