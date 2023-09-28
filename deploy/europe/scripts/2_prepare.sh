@@ -41,12 +41,14 @@ fi
 
 #TODO: Work with o5c file (osmfilter)
 if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' ] ; then
-  exit 1
-  $OSMIUM extract --bbox="$BBOX" data/sources/input.osm.pbf --output=data/sources/input-bb.osm.pbf
-  rm -f data/sources/input.osm.pbf
-  mv data/sources/input-bb.osm.pbf data/sources/input.osm.pbf
+  echo "Bbox handling in prepare.sh is disabled"
+  #exit 1
+  #$OSMIUM extract --bbox="$BBOX" data/sources/input.osm.pbf --output=data/sources/input-bb.osm.pbf
+  #rm -f data/sources/input.osm.pbf
+  #mv data/sources/input-bb.osm.pbf data/sources/input.osm.pbf
 fi
 
+# See https://wiki.openstreetmap.org/wiki/Osmfilter#Parameter_File
 echo "Extracting remaining buildings from $INPUT to $OUTPUT_BUILDINGS"
 $OSMFILTER $INPUT --keep='building=yes and historic=*' --keep='building=yes and name=*' --keep='building=yes and tourism=artwork' --keep='building=yes and architect:*=*' --keep='building=yes and architect=*' --keep='building:architecture=*' |$OSMCONVERT - --out-pbf -o=$OUTPUT_BUILDINGS
 echo "Created buildings at '$OUTPUT_BUILDINGS' `$SIZE_CMD $OUTPUT_BUILDINGS`"
