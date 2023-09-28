@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eo pipefail 
+set -eo pipefail
 
 if [ -n "$1" ] ; then
   echo "Loading $1"
@@ -18,7 +18,7 @@ else
   exit
 fi
 
-mkdir -p $SOURCE_DIR $TILES_DIR
+mkdir -p $SOURCE_DIR
 
 for SCRIPT in [0-9]*; do
   echo "Running $SCRIPT"
