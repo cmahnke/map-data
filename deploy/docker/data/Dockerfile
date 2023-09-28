@@ -34,7 +34,7 @@ RUN --mount=target=/mnt/build-context \
     apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
     mkdir -p $BUILD_DIR $DATA_DIR $BUILD_DIRdata/output/ && \
-    cp -r /mnt/build-context/docker/data/* $BUILD_DIR && \
+    cp -rL /mnt/build-context/deploy/docker/data/* $BUILD_DIR && \
     pip install -r $BUILD_DIR/requirements.txt && \
     PATH=$PATH:/opt/osmctools/bin:/opt/osmium/bin && \
     cd $BUILD_DIR/scripts && mkdir -p data/sources/ && \

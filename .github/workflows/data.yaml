@@ -54,7 +54,7 @@ jobs:
         with:
           push: true
           context: .
-          file: docker/data/Dockerfile
+          file: deploy/docker/data/Dockerfile
           build-args: |
             MAX_ZOOM=14
             FILTER_BUILDINGS=some
@@ -97,7 +97,7 @@ jobs:
         with:
           push: true
           context: .
-          file: docker/data/Dockerfile
+          file: deploy/docker/data/Dockerfile
           build-args: |
             COVERAGE=goettingen.json
             MAX_ZOOM=14
@@ -141,7 +141,7 @@ jobs:
         with:
           push: true
           context: .
-          file: docker/data/Dockerfile
+          file: deploy/docker/data/Dockerfile
           build-args: |
             COVERAGE=sylt.json
             MAX_ZOOM=14

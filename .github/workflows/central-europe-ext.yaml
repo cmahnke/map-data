@@ -54,7 +54,7 @@ jobs:
         with:
           push: true
           context: .
-          file: docker/data/Dockerfile
+          file: deploy/docker/data/Dockerfile
           build-args: |
             COVERAGE=central-europe-ext.json
             MAX_ZOOM=13
