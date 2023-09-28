@@ -98,7 +98,7 @@ jobs:
 
       - name: Run data generator
         run: |
-          mv deploy/europe/* /home/runner/work/map-data/storage
+          cp -rL deploy/europe/* /home/runner/work/map-data/storage
           cd /home/runner/work/map-data/storage/scripts
           ./run.sh conf.sh
           mv /home/runner/work/map-data/storage/scripts/tiles /home/runner/work/map-data/map-data/
