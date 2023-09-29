@@ -31,6 +31,7 @@ fi
 $WGET -N -P data/sources/ "https://osmdata.openstreetmap.de/download/water-polygons-split-3857.zip"
 $WGET -N -P data/sources/ "https://dev.maptiler.download/geodata/omt/lake_centerline.shp.zip"
 $WGET -N -P data/sources/ "https://dev.maptiler.download/geodata/omt/natural_earth_vector.sqlite.zip"
+$WGET -N -P data/sources/ "https://download.geofabrik.de/europe.poly"
 
 DOWNLOAD_CONVERT=""
 if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' && [ "$METHOD" == 'osmfilter' ] ] ; then

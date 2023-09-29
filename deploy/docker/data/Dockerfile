@@ -21,7 +21,7 @@ ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,tr
 # Filter buildings
 ARG FILTER_BUILDINGS=true
 
-ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.82-program_options lz4-libs geos zip jq" \
+ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.82-program_options lz4-libs geos zip jq bash" \
     BUILD_DIR=/tmp/build \
     DATA_DIR=/data \
     OSMCONVERT="/opt/osmctools/bin/osmconvert \
