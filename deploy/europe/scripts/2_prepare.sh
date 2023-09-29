@@ -39,8 +39,12 @@ if [ ! -r "$INPUT" ] ; then
   exit 1
 fi
 
+if [ -z "$METHOD" ] ; then
+  export METHOD=osmfilter
+fi
+
 #TODO: Work with o5c file (osmfilter)
-if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' ] ; then
+if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' ] && [ "$METHOD" == 'osmium' ] ; then
   echo "Bbox handling in prepare.sh is disabled"
   #exit 1
   #$OSMIUM extract --bbox="$BBOX" data/sources/input.osm.pbf --output=data/sources/input-bb.osm.pbf
@@ -50,8 +54,12 @@ fi
 
 # See https://wiki.openstreetmap.org/wiki/Osmfilter#Parameter_File
 echo "Extracting remaining buildings from $INPUT to $OUTPUT_BUILDINGS"
-$OSMFILTER $INPUT --parameter-file=../config/osmfilter-buildings |$OSMCONVERT - --out-pbf -o=$OUTPUT_BUILDINGS
+#$OSMFILTER $INPUT --parameter-file=../config/osmfilter-buildings |$OSMCONVERT - --out-pbf -o=$OUTPUT_BUILDINGS
+BUILDINGS=$(./extract-buildings.sh $INPUT);
+mv "$BUILDINGS" "$OUTPUT_BUILDINGS"
 echo "Created buildings at '$OUTPUT_BUILDINGS' `$SIZE_CMD $OUTPUT_BUILDINGS`"
+
+echo "Cleaning data file"
 $OSMFILTER $INPUT --parameter-file=../config/osmfilter-clean | $OSMCONVERT - --out-pbf -o=$OUTPUT_WO_BUILDINGS
 echo "Removing $INPUT"
 rm $INPUT

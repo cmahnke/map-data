@@ -33,7 +33,7 @@ $WGET -N -P data/sources/ "https://dev.maptiler.download/geodata/omt/lake_center
 $WGET -N -P data/sources/ "https://dev.maptiler.download/geodata/omt/natural_earth_vector.sqlite.zip"
 
 DOWNLOAD_CONVERT=""
-if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' ] ; then
+if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' && [ "$METHOD" == 'osmfilter' ] ] ; then
   DOWNLOAD_CONVERT="-b=$BBOX --complete-ways --complete-multipolygons --complete-boundaries"
 fi
 

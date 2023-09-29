@@ -57,7 +57,7 @@ RUN --mount=target=/mnt/build-context \
     fi && \
     echo "Created buildings at '$BUILDINGS' $(stat -c %s $BUILDINGS)" && \
     if test "$FILTER_BUILDINGS" == 'true' -o "$FILTER_BUILDINGS" == 'some' ; then \
-      WO_BUILDINGS=$(./remove-buildings.sh ./tmp/merged.osm.pbf) && \
+      WO_BUILDINGS=$(./clean-unwanted.sh ./tmp/merged.osm.pbf) && \
       echo "Removed buildings from '$WO_BUILDINGS' $(stat -c %s $WO_BUILDINGS)" && \
       rm ./tmp/merged.osm.pbf && \
       if test "$FILTER_BUILDINGS" == 'some' ; then \
