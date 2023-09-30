@@ -27,7 +27,7 @@ if test -n "$1" ; then
     $OSMFILTER $1.o5m --parameter-file=../config/osmfilter-clean |$OSMCONVERT - --out-pbf -o=$OUT
   elif [ "$METHOD" = "osmium" ] ; then
 
-    $OSMIUM tags-filter -i -o $OUT $1 'building' 'natural=tree'
+    $OSMIUM tags-filter -i -o $OUT $1 'a/building' 'natural=tree'
     #Tags to remove 'addr:*' surface source service
     # 'aeroway' 'office' 'cuisine' 'sport' 'public_transport'
 
