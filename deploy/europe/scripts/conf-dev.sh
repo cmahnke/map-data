@@ -10,6 +10,7 @@ export WGET=wget
 export OSMCONVERT="./osmconvert"
 export OSMFILTER="./osmfilter"
 export OSMIUM="/opt/homebrew/bin/osmium"
+export OSP_REMOVE_TAGS="exit 1"
 export MBUTIL="/opt/homebrew/bin/mb-util"
 export COVERAGE=`basename $INPUT_URL`
 export PLANETILER="exit 1"
