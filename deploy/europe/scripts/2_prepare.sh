@@ -60,7 +60,7 @@ echo "Created buildings at '$OUTPUT_BUILDINGS' `$SIZE_CMD $OUTPUT_BUILDINGS`"
 echo "Cleaning data file"
 #$OSMFILTER $INPUT --parameter-file=../config/osmfilter-clean | $OSMCONVERT - --out-pbf -o=$OUTPUT_WO_BUILDINGS
 WO_BUILDINGS=$(./clean-unwanted.sh $INPUT)
-mv "$WO_BUILDINGS" "OUTPUT_WO_BUILDINGS"
+mv "$WO_BUILDINGS" "$OUTPUT_WO_BUILDINGS"
 echo "Removing $INPUT"
 rm $INPUT
 
