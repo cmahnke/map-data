@@ -28,10 +28,8 @@ if [ -z "$METHOD" ] ; then
   METHOD=osmfilter
 fi
 
-$WGET -N -P data/sources/ "https://osmdata.openstreetmap.de/download/water-polygons-split-3857.zip"
-$WGET -N -P data/sources/ "https://dev.maptiler.download/geodata/omt/lake_centerline.shp.zip"
-$WGET -N -P data/sources/ "https://dev.maptiler.download/geodata/omt/natural_earth_vector.sqlite.zip"
-$WGET -N -P data/sources/ "https://download.geofabrik.de/europe.poly"
+sed -E 's/(.*)\/(.*)-latest.osm.pbf/$11\/$22.poly/g'
+$WGET -N -P "$SOURCE_DIR" `echo $INPUT_URL |sed -E 's/(.*)\/(.*)-latest.osm.pbf/\1\/\2.poly/g'`
 
 DOWNLOAD_CONVERT=""
 if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' && [ "$METHOD" == 'osmfilter' ] ] ; then
