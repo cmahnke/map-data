@@ -26,7 +26,8 @@ ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless exp
     DATA_DIR=/data \
     OSMCONVERT="/opt/osmctools/bin/osmconvert" \
     OSMFILTER="/opt/osmctools/bin/osmfilter" \
-    OSMIUM="/opt/osmium/bin/osmium"
+    OSMIUM="/opt/osmium/bin/osmium" \
+    METHOD=osmium
 
 COPY --from=planetiler /opt/planetiler /opt/planetiler
 COPY --from=planetiler /tmp/build /tmp/build
