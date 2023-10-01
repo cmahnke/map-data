@@ -28,8 +28,7 @@ if test -n "$1" ; then
   elif [ "$METHOD" = "osmium" ] ; then
 
     $OSMIUM tags-filter -i -o $OUT $1 'a/building' 'natural=tree'
-    #Tags to remove 'addr:*' surface source service
-    # 'aeroway' 'office' 'cuisine' 'sport' 'public_transport'
+    #$OSP_REMOVE_TAGS $1 -e ../config/osp-proc-remove-tags-clean -o $OUT
 
   fi
   echo "$OUT"

@@ -10,12 +10,12 @@ export WGET=wget
 export OSMCONVERT="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/osmctools:latest /opt/osmctools/bin/osmconvert"
 export OSMFILTER="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/osmctools:latest /opt/osmctools/bin/osmfilter"
 export OSMIUM="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/osmium:latest /opt/osmium/bin/osmium"
-export OSP_REMOVE_TAGS="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/mbutil:latest /opt/osmium/bin/osp-proc-remove-tags"
+export OSP_REMOVE_TAGS="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/osmium:latest /opt/osmium/bin/osp-proc-remove-tags"
 export MBUTIL="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/mbutil:latest /usr/bin/mb-util"
 export COVERAGE=`basename $INPUT_URL`
 export PLANETILER="exit 1"
 export PLANETILER_OPTS="--polygon=$SOURCE_DIR/europe.poly"
 
 export TILE_COMPRESSION=gzip
-export MAX_ZOOM=14
+export MAX_ZOOM=13
 export EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,transportation_name

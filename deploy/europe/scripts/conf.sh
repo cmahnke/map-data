@@ -17,5 +17,5 @@ export PLANETILER="java -Xmx5g -jar /opt/planetiler/planetiler-*-with-deps.jar"
 export PLANETILER_OPTS="--polygon=$SOURCE_DIR/europe.poly"
 
 export TILE_COMPRESSION=gzip
-export MAX_ZOOM=14
+export MAX_ZOOM=13
 export EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,transportation_name
