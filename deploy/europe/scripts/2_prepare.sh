@@ -73,3 +73,8 @@ echo "Removed buildings from '$OUTPUT_WO_BUILDINGS' `$SIZE_CMD $OUTPUT_WO_BUILDI
 echo "Merge remaining buildings back"
 $OSMIUM merge -O --fsync $OUTPUT_WO_BUILDINGS $OUTPUT_BUILDINGS -o $POSTPROCESSED
 rm $OUTPUT_WO_BUILDINGS $OUTPUT_BUILDINGS
+
+echo "Storage Statistics"
+ls -R `dirname $INPUT`
+du -h `dirname $INPUT`/*
+df -h
