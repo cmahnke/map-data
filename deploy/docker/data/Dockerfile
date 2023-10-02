@@ -60,11 +60,11 @@ RUN --mount=target=/mnt/build-context \
     if test "$FILTER_BUILDINGS" == 'true' -o "$FILTER_BUILDINGS" == 'some' ; then \
       WO_BUILDINGS=$(./clean-unwanted.sh ./tmp/merged.osm.pbf) && \
       echo "Removed buildings from '$WO_BUILDINGS' $(stat -c %s $WO_BUILDINGS)" && \
-      rm ./tmp/merged.osm.pbf && \
+      rm -f ./tmp/merged.osm.pbf && \
       if test "$FILTER_BUILDINGS" == 'some' ; then \
         echo "Merge remaining buildings back" && \
         /opt/osmium/bin/osmium merge -O --fsync $WO_BUILDINGS $BUILDINGS -o data/sources/${COVERAGE}.osm.pbf && \
-        rm $WO_BUILDINGS $BUILDINGS ; \
+        rm -f $WO_BUILDINGS $BUILDINGS ; \
       else \
         rm -f ./tmp/merged.osm.pbf && \
         mv ./tmp/merged-filtered.osm.pbf data/sources/${COVERAGE}.osm.pbf ; \
