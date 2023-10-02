@@ -6,7 +6,7 @@ export INPUT=$SOURCE_DIR/input.pbf
 export POSTPROCESSED=$SOURCE_DIR/input.pbf
 export TILES_DIR=tiles
 export METHOD=osmium
-export WGET"=wget --show-progress"
+export WGET"=wget --progress=bar:force:noscroll"
 export OSMCONVERT="./osmconvert"
 export OSMFILTER="./osmfilter"
 export OSMIUM="/opt/homebrew/bin/osmium"

@@ -6,7 +6,7 @@ export INPUT=$SOURCE_DIR/input.pbf
 export POSTPROCESSED=$SOURCE_DIR/input.pbf
 export TILES_DIR=tiles
 export METHOD=osmium
-export WGET"=wget --show-progress"
+export WGET"=wget --progress=bar:force:noscroll"
 export OSMCONVERT="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/osmctools:latest /opt/osmctools/bin/osmconvert"
 export OSMFILTER="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/osmctools:latest /opt/osmctools/bin/osmfilter"
 export OSMIUM="docker run -it -v `pwd`:`pwd` -w `pwd` ghcr.io/cmahnke/map-tools/osmium:latest /opt/osmium/bin/osmium"

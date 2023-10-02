@@ -1,11 +1,6 @@
 name: Publish Central Europe extended Data
 
 on:
-  workflow_run:
-    workflows: ["Publish Data"]
-    branches: [main]
-    types:
-      - completed
   workflow_dispatch:
   schedule:
     - cron:  '30 10 * * 1'

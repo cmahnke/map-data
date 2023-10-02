@@ -37,6 +37,7 @@ n/amenity=bicycle_rental
 n/amenity=bicycle_parking
 n/amenity=waste_basket
 n/amenity=bench
+# Remove other nodes
 n/emergency
 n/power
 
