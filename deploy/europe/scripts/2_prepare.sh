@@ -40,15 +40,16 @@ if [ ! -r "$INPUT" ] ; then
 fi
 
 if [ -z "$METHOD" ] ; then
-  export METHOD=osmfilter
+  export METHOD=osmium
 fi
 
 if [ "${BBOX}" != '' ] && [ "${BBOX}" != 'null' ] && [ "$METHOD" == 'osmium' ] ; then
-  echo "Bbox handling in prepare.sh is disabled"
-  exit 1
-  #$OSMIUM extract --bbox="$BBOX" data/sources/input.osm.pbf --output=data/sources/input-bb.osm.pbf
-  #rm -f data/sources/input.osm.pbf
-  #mv data/sources/input-bb.osm.pbf data/sources/input.osm.pbf
+  BBOX=$(echo $BBOX |tr ' ' ',')
+  TMP=$INPUT-bb.osm.pbf
+  echo "Extracting Bbox $$BBOX from $INPUT"
+  $OSMIUM extract --bbox="$BBOX" $INPUT --output=$TMP
+  rm -f $INPUT
+  mv $TMP $INPUT
 fi
 
 # See https://wiki.openstreetmap.org/wiki/Osmfilter#Parameter_File

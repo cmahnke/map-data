@@ -27,6 +27,7 @@ unisex
 wheelchair
 crossing:*
 crossing
+button_operated
 parking
 parking:*
 fee
@@ -47,3 +48,14 @@ bus
 fast_food
 food
 cuisine
+access
+tiger:*
+tracktype
+osak:identifier
+motor_vehicle
+postal_code
+survey:*
+check_date
+generator:*
+step_count
+backrest

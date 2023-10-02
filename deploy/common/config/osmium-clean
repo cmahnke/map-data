@@ -37,9 +37,13 @@ n/amenity=bicycle_rental
 n/amenity=bicycle_parking
 n/amenity=waste_basket
 n/amenity=bench
+n/amenity=parking
 # Remove other nodes
 n/emergency
 n/power
+n/lamp_type
+n/golf
+n/sport
 
 n/traffic_signals
 n/highway=speed_camera

@@ -25,7 +25,7 @@ if [ -z "$BBOX" ] ; then
 fi
 
 if [ -z "$METHOD" ] ; then
-  METHOD=osmfilter
+  METHOD=osmium
 fi
 
 sed -E 's/(.*)\/(.*)-latest.osm.pbf/$11\/$22.poly/g'
