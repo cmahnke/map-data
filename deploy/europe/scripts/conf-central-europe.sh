@@ -16,7 +16,6 @@ export COVERAGE=`basename $INPUT_URL`
 export PLANETILER="java -Xmx5g -jar /opt/planetiler/planetiler-*-with-deps.jar"
 export PLANETILER_BBOX="-1.5,41.5,26,61"
 #export PLANETILER_OPTS="--polygon=$SOURCE_DIR/europe.poly"
-export PLANETILER_OPTS=""
 
 export TILE_COMPRESSION=gzip
 export MAX_ZOOM=13
