@@ -28,7 +28,7 @@ if test -n "$1" ; then
   elif [ "$METHOD" = "osmium" ] ; then
     OUT_FILTER="$1-clean1.osm.pbf"
     echo "Filtereing '$1' into '$OUT_FILTER'" >&2
-    $OSMIUM tags-filter -i -o $OUT_FILTER $1 'a/building' 'natural=tree'
+    $OSMIUM tags-filter -i -o $OUT_FILTER $1 'a/building' 'natural=tree' 'n/amenity=parking_entrance' 'n/craft' 'n/playground' 'n/leisure' 'n/addr:housenumber' 'shop' 'n/traffic_signals'
     echo "Removing $1" >&2
     rm $1
     echo "Filtering '$OUT_FILTER' into '$OUT'" >&2
