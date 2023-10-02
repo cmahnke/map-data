@@ -27,9 +27,11 @@ if test -n "$1" ; then
     $OSMFILTER $1.o5m --parameter-file=../config/osmfilter-clean |$OSMCONVERT - --out-pbf -o=$OUT
   elif [ "$METHOD" = "osmium" ] ; then
     OUT_FILTER="$1-clean1.osm.pbf"
+    echo "Filtereing '$1' into '$OUT_FILTER'" >&2
     $OSMIUM tags-filter -i -o $OUT_FILTER $1 'a/building' 'natural=tree'
-    echo "Removing $1"
+    echo "Removing $1" >&2
     rm $1
+    echo "Filtering '$OUT_FILTER' into '$OUT'" >&2
     $OSP_REMOVE_TAGS $OUT_FILTER -e ../config/osp-proc-remove-tags-clean -o $OUT
     rm $OUT_FILTER
   fi
