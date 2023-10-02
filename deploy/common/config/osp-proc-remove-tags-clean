@@ -38,8 +38,8 @@ opening_hours
 traffic_signals:*
 traffic_signals
 facebook
-brand:*
-brand
+#brand:*
+#brand
 service
 created_by
 public_transport
@@ -47,7 +47,3 @@ bus
 fast_food
 food
 cuisine
-supermarket
-bakery
-restaurant
-hairdresser
