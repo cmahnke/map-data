@@ -21,7 +21,7 @@ ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,tr
 # Filter buildings
 ARG FILTER_BUILDINGS=true
 
-ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.82-program_options lz4-libs geos zip jq bash" \
+ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.82-program_options lz4-libs geos zip jq bash temurin-21-jre" \
     BUILD_DIR=/tmp/build \
     DATA_DIR=/data \
     OSMCONVERT="/opt/osmctools/bin/osmconvert" \
@@ -35,6 +35,8 @@ COPY --from=osmium /opt/osmium /opt/osmium
 COPY --from=osmctools /opt/osmctools /opt/osmctools
 
 RUN --mount=target=/mnt/build-context \
+    wget -O /etc/apk/keys/adoptium.rsa.pub https://packages.adoptium.net/artifactory/api/security/keypair/public/repositories/apk && \
+    echo 'https://packages.adoptium.net/artifactory/apk/alpine/main' >> /etc/apk/repositories && \
     apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
     mkdir -p $BUILD_DIR $DATA_DIR $BUILD_DIRdata/output/ && \
