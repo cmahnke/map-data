@@ -25,7 +25,7 @@ updates:
         patterns:
         - '*'
   - package-ecosystem: "pip"
-    directory: "/deploy/common"
+    directory: "/deploy/common/"
     schedule:
       interval: "daily"
     groups:
@@ -33,7 +33,7 @@ updates:
         patterns:
         - '*'
   - package-ecosystem: "pip"
-    directory: "/deploy/docker"
+    directory: "/deploy/docker/"
     schedule:
       interval: "daily"
     groups:
@@ -41,7 +41,7 @@ updates:
         patterns:
         - '*'
   - package-ecosystem: "pip"
-    directory: "/deploy/europe"
+    directory: "/deploy/europe/"
     schedule:
       interval: "daily"
     groups:
