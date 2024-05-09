@@ -41,7 +41,7 @@ RUN --mount=target=/mnt/build-context \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
     mkdir -p $BUILD_DIR $DATA_DIR $BUILD_DIRdata/output/ && \
     cp -rL /mnt/build-context/deploy/docker/data/* $BUILD_DIR && \
-    pip install -r $BUILD_DIR/requirements.txt && \
+    pip install --break-system-packages -r $BUILD_DIR/requirements.txt && \
     PATH=$PATH:/opt/osmctools/bin:/opt/osmium/bin && \
     cd $BUILD_DIR/scripts && mkdir -p data/sources/ && \
     ./mktiles.py --print-cmd -v -m -c mktiles-docker.yaml -u ../coverages/${COVERAGE} && \
