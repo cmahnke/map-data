@@ -100,7 +100,7 @@ jobs:
           file: deploy/docker/data/Dockerfile
           build-args: |
             COVERAGE=goettingen.json
-            MAX_ZOOM=14
+            MAX_ZOOM=15
             EXCLUDE_LAYERS=""
             FILTER_BUILDINGS=false
           tags: |
@@ -144,7 +144,7 @@ jobs:
           file: deploy/docker/data/Dockerfile
           build-args: |
             COVERAGE=sylt.json
-            MAX_ZOOM=14
+            MAX_ZOOM=15
             EXCLUDE_LAYERS=""
             FILTER_BUILDINGS=false
           tags: |
