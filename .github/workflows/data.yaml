@@ -103,6 +103,7 @@ jobs:
             MAX_ZOOM=15
             EXCLUDE_LAYERS=""
             FILTER_BUILDINGS=false
+            TILE_COMPRESSION=none
           tags: |
             ghcr.io/cmahnke/map-data/goettingen:latest
 
@@ -147,5 +148,6 @@ jobs:
             MAX_ZOOM=15
             EXCLUDE_LAYERS=""
             FILTER_BUILDINGS=false
+            TILE_COMPRESSION=none
           tags: |
             ghcr.io/cmahnke/map-data/sylt:latest
