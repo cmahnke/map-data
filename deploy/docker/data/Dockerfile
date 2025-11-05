@@ -7,7 +7,7 @@ FROM ${PLANATILER_IMAGE} AS planetiler
 FROM ghcr.io/cmahnke/map-tools/osmium:latest AS osmium
 FROM ghcr.io/cmahnke/map-tools/osmctools:latest AS osmctools
 
-FROM alpine:3.21 as builder
+FROM alpine:3.22 as builder
 
 ARG COVERAGE=central-europe.json
 #tile_compression=gzip (the tile compression, one of [none, gzip])
@@ -105,7 +105,7 @@ RUN --mount=target=/mnt/build-context \
 
 # Restart from an empty image to get rid of layers
 #FROM scratch
-FROM alpine:3.21
+FROM alpine:3.22
 
 ENV DATA_DIR=/data
 
