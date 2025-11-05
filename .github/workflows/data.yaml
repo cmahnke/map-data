@@ -105,6 +105,7 @@ jobs:
             EXCLUDE_LAYERS=""
             FILTER_BUILDINGS=false
             TILE_COMPRESSION=none
+            KEEP_INPUT=true
           tags: |
             ghcr.io/cmahnke/map-data/goettingen:latest
 
