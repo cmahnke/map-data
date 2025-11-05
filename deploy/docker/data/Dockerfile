@@ -82,8 +82,11 @@ RUN --mount=target=/mnt/build-context \
     mv data/sources/${COVERAGE}.osm.pbf $BUILD_DIR/data/sources/${COVERAGE}.osm.pbf && \
     cd $BUILD_DIR/ && \
     rm -rf $BUILD_DIR/scripts && \
+    if test "${KEEP_INPUT}" != 'true' ; then \
+      PLANETILER_OPTS="--free_osm_after_read=true $PLANETILER_OPTS " ; \
+    fi && \
     echo "Starting Planetiler" && \
-    java -Xmx4g -jar /opt/planetiler/planetiler-*-with-deps.jar --download=false --languages=de,en --use_wikidata=false --osm-path=data/sources/${COVERAGE}.osm.pbf --free_water_polygons_after_read=true --free_natural_earth_after_read=true --free_osm_after_read=true --free_lake_centerlines_after_read=true --tile_compression=${TILE_COMPRESSION} --maxzoom=${MAX_ZOOM} --building_merge_z13=false --render_maxzoom=${MAX_ZOOM} --exclude-layers=${EXCLUDE_LAYERS} $PLANETILER_OPTS  && \
+    java -Xmx4g -jar /opt/planetiler/planetiler-*-with-deps.jar --download=false --languages=de,en --use_wikidata=false --osm-path=data/sources/${COVERAGE}.osm.pbf --free_water_polygons_after_read=true --free_natural_earth_after_read=true --free_lake_centerlines_after_read=true --tile_compression=${TILE_COMPRESSION} --maxzoom=${MAX_ZOOM} --building_merge_z13=false --render_maxzoom=${MAX_ZOOM} --exclude-layers=${EXCLUDE_LAYERS} $PLANETILER_OPTS  && \
     if test "${KEEP_INPUT}" = 'true' ; then \
       cp $BUILD_DIR/data/sources/${COVERAGE}.osm.pbf $DATA_DIR/ ; \
     fi && \
