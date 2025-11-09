@@ -106,6 +106,7 @@ jobs:
             FILTER_BUILDINGS=false
             TILE_COMPRESSION=none
             KEEP_INPUT=true
+            PLANETILER_ARGS="--use_wikidata=true"
           tags: |
             ghcr.io/cmahnke/map-data/goettingen:latest
 

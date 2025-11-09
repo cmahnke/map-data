@@ -22,6 +22,8 @@ ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,tr
 ARG FILTER_BUILDINGS=true
 # Keep input file
 ARG KEEP_INPUT=false
+# Additional Planetiler args
+ARG PLANETILER_ARGS=""
 
 ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.84-program_options lz4-libs geos zip jq bash temurin-21-jre" \
     BUILD_DIR=/tmp/build \
@@ -49,13 +51,13 @@ RUN --mount=target=/mnt/build-context \
     ./mktiles.py --print-cmd -v -m -c mktiles-docker.yaml -u ../coverages/${COVERAGE} && \
     BBOX=$(jq -r .bbox ../coverages/${COVERAGE} | tr ' ' ',') && \
     if test "${BBOX}" != '' && test "${BBOX}" != 'null' ; then \
-      PLANETILER_OPTS="--bounds=${BBOX}" ; \
+      PLANETILER_OPTS="${PLANETILER_ARGS} --bounds=${BBOX}" ; \
       /opt/osmium/bin/osmium extract --bbox="$BBOX" ./tmp/merged.osm.pbf --output=./tmp/merged-bb.osm.pbf && \
       rm -f ./tmp/merged.osm.pbf && \
       echo "[`echo $BBOX |tr ' ' ','`]" > $DATA_DIR/bbox.json && \
       mv ./tmp/merged-bb.osm.pbf ./tmp/merged.osm.pbf ; \
     else \
-      PLANETILER_OPTS="" ; \
+      PLANETILER_OPTS="${PLANETILER_ARGS} " ; \
     fi && \
     if test "$FILTER_BUILDINGS" == 'some' ; then \
       BUILDINGS=$(./extract-buildings.sh ./tmp/merged.osm.pbf); \
