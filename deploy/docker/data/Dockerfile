@@ -23,7 +23,7 @@ ARG FILTER_BUILDINGS=true
 # Keep input file
 ARG KEEP_INPUT=false
 # Additional Planetiler args
-ARG PLANETILER_ARGS=""
+ARG PLANETILER_ARGS="--use_wikidata=false"
 
 ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.84-program_options lz4-libs geos zip jq bash temurin-21-jre" \
     BUILD_DIR=/tmp/build \
@@ -88,7 +88,7 @@ RUN --mount=target=/mnt/build-context \
       PLANETILER_OPTS="--free_osm_after_read=true $PLANETILER_OPTS " ; \
     fi && \
     echo "Starting Planetiler" && \
-    java -Xmx4g -jar /opt/planetiler/planetiler-*-with-deps.jar --download=false --languages=de,en --use_wikidata=false --osm-path=data/sources/${COVERAGE}.osm.pbf --free_water_polygons_after_read=true --free_natural_earth_after_read=true --free_lake_centerlines_after_read=true --tile_compression=${TILE_COMPRESSION} --maxzoom=${MAX_ZOOM} --building_merge_z13=false --render_maxzoom=${MAX_ZOOM} --exclude-layers=${EXCLUDE_LAYERS} $PLANETILER_OPTS  && \
+    java -Xmx4g -jar /opt/planetiler/planetiler-*-with-deps.jar --download=false --languages=de,en --osm-path=data/sources/${COVERAGE}.osm.pbf --free_water_polygons_after_read=true --free_natural_earth_after_read=true --free_lake_centerlines_after_read=true --tile_compression=${TILE_COMPRESSION} --maxzoom=${MAX_ZOOM} --building_merge_z13=false --render_maxzoom=${MAX_ZOOM} --exclude-layers=${EXCLUDE_LAYERS} $PLANETILER_OPTS  && \
     if test "${KEEP_INPUT}" = 'true' ; then \
       cp $BUILD_DIR/data/sources/${COVERAGE}.osm.pbf $DATA_DIR/ && \
       find $DATA_DIR/ -name "*.osm.pbf" -exec mv {} $(basename {} .json.osm.pbf).osm.pbf \; ; \
