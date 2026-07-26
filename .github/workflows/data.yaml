@@ -133,7 +133,7 @@ jobs:
         with:
           push: true
           context: .
-          file: deploy/docker/goettingen-topo/Dockerfile
+          file: deploy/docker/data/goettingen-topo/Dockerfile
           tags: |
             ghcr.io/cmahnke/map-data/goettingen:topo
 
