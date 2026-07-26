@@ -15,6 +15,9 @@ COPY deploy/docker/data/goettingen-topo/config/seed.yaml /etc/seed.yaml
 
 RUN mapproxy-seed -s /etc/seed.yaml -f /etc/mapproxy.yaml
 
-FROM scratch
+FROM alpine:3.24
+
+LABEL maintainer="cmahnke@gmail.com"
+LABEL org.opencontainers.image.source=https://github.com/cmahnke/map-data
 
 COPY --from=builder /data/topo-map /data/map
