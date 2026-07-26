@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:experimental
-
 # Which Planatiler image to use
 ARG PLANATILER_IMAGE=ghcr.io/cmahnke/map-tools/planetiler:latest-data
 
@@ -58,6 +56,11 @@ RUN --mount=target=/mnt/build-context \
       mv ./tmp/merged-bb.osm.pbf ./tmp/merged.osm.pbf ; \
     else \
       PLANETILER_OPTS="${PLANETILER_ARGS} " ; \
+    fi && \
+    MAX=$(jq -r .max ../coverages/${COVERAGE}) && \
+    if test "${MAX}" != '' && test "${MAX}" != 'null' ; then \
+      echo "Setting MAX ZOOM to ${MAX} from config!" && \
+      MAX_ZOOM=$MAX ; \
     fi && \
     if test "$FILTER_BUILDINGS" == 'some' ; then \
       BUILDINGS=$(./extract-buildings.sh ./tmp/merged.osm.pbf); \
