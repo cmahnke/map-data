@@ -34,7 +34,7 @@ caches:
     # This defines the location and directory structure of the downloaded tiles
     cache:
       type: file
-      directory: /data/topo-map
+      directory: /data/tiles
       directory_layout: tms
       coverage:
         bbox: [9.7, 51.45, 10.1, 51.6]
