@@ -110,7 +110,7 @@ jobs:
           tags: |
             ghcr.io/cmahnke/map-data/goettingen:latest
 
-  build_goettingen:
+  build_goettingen_topo:
     name: Push goettingen Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
