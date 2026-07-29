@@ -5,7 +5,7 @@ FROM ${PLANATILER_IMAGE} AS planetiler
 FROM ghcr.io/cmahnke/map-tools/osmium:latest AS osmium
 FROM ghcr.io/cmahnke/map-tools/osmctools:latest AS osmctools
 
-FROM alpine:3.24 as builder
+FROM alpine:3.24 AS builder
 
 ARG COVERAGE=central-europe.json
 #tile_compression=gzip (the tile compression, one of [none, gzip])
@@ -115,6 +115,6 @@ FROM alpine:3.24
 ENV DATA_DIR=/data
 
 LABEL maintainer="cmahnke@gmail.com"
-LABEL org.opencontainers.image.source https://github.com/cmahnke/map-data
+LABEL org.opencontainers.image.source=https://github.com/cmahnke/map-data
 
 COPY --from=builder $DATA_DIR $DATA_DIR
