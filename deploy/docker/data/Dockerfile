@@ -23,7 +23,7 @@ ARG KEEP_INPUT=false
 # Additional Planetiler args
 ARG PLANETILER_ARGS="--use_wikidata=false"
 
-ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.84-program_options lz4-libs geos zip jq bash temurin-25-jre" \
+ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests expat libbz2 zlib boost1.84-program_options lz4-libs geos zip jq bash temurin-25-jre" \
     BUILD_DIR=/tmp/build \
     DATA_DIR=/data \
     OSMCONVERT="/opt/osmctools/bin/osmconvert" \

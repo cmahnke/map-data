@@ -181,3 +181,51 @@ jobs:
             TILE_COMPRESSION=none
           tags: |
             ghcr.io/cmahnke/map-data/sylt:latest
+
+  publish_maps:
+    name: Publish generated maps
+    needs: [build_goettingen, build_goettingen_topo, build_sylt]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v3.0.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          logout: false
+
+      - name: Extract map data from Docker images
+        run: |
+          mkdir -p public/sylt public/goettingen
+
+          # Extract Sylt
+          docker create --name temp_sylt ghcr.io/cmahnke/map-data/sylt:latest
+          docker cp temp_sylt:/data/. public/sylt/
+          docker rm temp_sylt
+
+          # Extract Göttingen Base
+          docker create --name temp_goettingen ghcr.io/cmahnke/map-data/goettingen:latest
+          docker cp temp_goettingen:/data/. public/goettingen/
+          docker rm temp_goettingen
+
+          # Extract Göttingen Topo into goettingen subfolder
+          docker create --name temp_goettingen_topo ghcr.io/cmahnke/map-data/goettingen:topo
+          docker cp temp_goettingen_topo:/data/. public/goettingen/
+          docker rm temp_goettingen_topo
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
