@@ -187,15 +187,16 @@ jobs:
           tags: |
             ghcr.io/cmahnke/map-data/sylt:latest
 
-  publish_maps:
+publish_maps:
     name: Publish generated maps
     needs: [build_goettingen, build_goettingen_topo, build_sylt]
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pages: write
-      id-token: write
+      contents: write
     steps:
+      - name: Checkout target branch repository context
+        uses: actions/checkout@v4
+
       - name: Login to GitHub Packages Docker Registry
         uses: docker/login-action@v3.0.0
         with:
@@ -223,14 +224,9 @@ jobs:
           docker cp temp_goettingen_topo:/data/. public/goettingen/
           docker rm temp_goettingen_topo
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
+      - name: Deploy to GitHub Pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: public
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
