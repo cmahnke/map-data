@@ -5,7 +5,7 @@ FROM ${PLANATILER_IMAGE} AS planetiler
 FROM ghcr.io/cmahnke/map-tools/osmium:latest AS osmium
 FROM ghcr.io/cmahnke/map-tools/osmctools:latest AS osmctools
 
-FROM alpine:3.22 as builder
+FROM alpine:3.24 as builder
 
 ARG COVERAGE=central-europe.json
 #tile_compression=gzip (the tile compression, one of [none, gzip])
@@ -23,7 +23,7 @@ ARG KEEP_INPUT=false
 # Additional Planetiler args
 ARG PLANETILER_ARGS="--use_wikidata=false"
 
-ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.84-program_options lz4-libs geos zip jq bash temurin-21-jre" \
+ENV BUILD_DEPS="python3 py3-pip py3-yaml py3-requests openjdk17-jre-headless expat libbz2 zlib boost1.84-program_options lz4-libs geos zip jq bash temurin-25-jre" \
     BUILD_DIR=/tmp/build \
     DATA_DIR=/data \
     OSMCONVERT="/opt/osmctools/bin/osmconvert" \
