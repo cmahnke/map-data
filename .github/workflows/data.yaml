@@ -187,7 +187,7 @@ jobs:
           tags: |
             ghcr.io/cmahnke/map-data/sylt:latest
 
-publish_maps:
+  publish_maps:
     name: Publish generated maps
     needs: [build_goettingen, build_goettingen_topo, build_sylt]
     runs-on: ubuntu-latest
