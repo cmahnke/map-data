@@ -30,13 +30,13 @@ jobs:
           sudo apt-get autoremove -y
           df -h
 
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
 
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Provide dependencies
         run: |
@@ -89,7 +89,7 @@ jobs:
           root-reserve-mb: 256
 
       - name: Login to GitHub Packages Docker Registry
-        uses: redhat-actions/podman-login@v1
+        uses: redhat-actions/podman-login@v2
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -133,7 +133,7 @@ jobs:
           sudo swapon /mnt/swapfile
 
       - name: Using Buildah Action to create image
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v3
         with:
           base-image: alpine:3.18
           image: ghcr.io/cmahnke/map-data/europe
@@ -142,7 +142,7 @@ jobs:
             deploy/europe/scripts/tiles
 
       - name: Push To GitHub packages
-        uses: redhat-actions/push-to-registry@v2
+        uses: redhat-actions/push-to-registry@v3
         with:
           image: ghcr.io/cmahnke/map-data/europe
           tags: latest
