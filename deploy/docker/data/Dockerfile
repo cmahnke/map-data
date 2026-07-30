@@ -15,7 +15,7 @@ ARG FORMAT=files
 # Use this to reduce maximum zoom level
 ARG MAX_ZOOM=14
 #Exclude layers
-ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,transportation_name,projektemacher
+ARG EXCLUDE_LAYERS=housenumber,aeroway,aerodrome_label,mountain_peak,waterway,transportation_name,projektemacher,culture
 # Filter buildings
 ARG FILTER_BUILDINGS=true
 # Keep input file
