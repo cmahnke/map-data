@@ -1,0 +1,20 @@
+{
+    "name": "OpenMapTiles",
+    "description": "A tileset showcasing all layers in OpenMapTiles. https://openmaptiles.org",
+    "attribution": "<a href=\"https://www.openmaptiles.org/\" target=\"_blank\">&copy; OpenMapTiles</a> <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">&copy; OpenStreetMap contributors</a>",
+    "version": "3.16.0",
+    "type": "baselayer",
+    "format": "pbf",
+    "bounds": "8.48,53.61,8.7,53.61",
+    "center": "8.59,53.61,11",
+    "minzoom": "0",
+    "maxzoom": "16",
+    "json": "{\"vector_layers\":[{\"id\":\"boundary\",\"fields\":{\"admin_level\":\"Number\",\"disputed\":\"Number\",\"maritime\":\"Number\"},\"minzoom\":1,\"maxzoom\":4},{\"id\":\"landuse\",\"fields\":{\"class\":\"String\"},\"minzoom\":5,\"maxzoom\":5},{\"id\":\"water\",\"fields\":{\"class\":\"String\"},\"minzoom\":0,\"maxzoom\":5}]}",
+    "planetiler:buildtime": "2026-08-02T19:28:11.184Z",
+    "planetiler:githash": "243c68db3ad6f60e210cb1769fdafe2abed38503",
+    "planetiler:osm:osmosisreplicationseq": "0",
+    "planetiler:osm:osmosisreplicationtime": "1970-01-01T00:00:00Z",
+    "planetiler:osm:osmosisreplicationurl": "",
+    "planetiler:version": "0.10.3-SNAPSHOT",
+    "compression": "none"
+}
