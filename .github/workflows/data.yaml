@@ -61,6 +61,7 @@ jobs:
           push: true
           context: .
           file: deploy/docker/data/Dockerfile
+          network: host
           build-args: |
             MAX_ZOOM=14
             FILTER_BUILDINGS=some
@@ -104,6 +105,7 @@ jobs:
           push: true
           context: .
           file: deploy/docker/data/Dockerfile
+          network: host
           build-args: |
             COVERAGE=goettingen.json
             MAX_ZOOM=15
@@ -138,6 +140,7 @@ jobs:
         with:
           push: true
           context: .
+          network: host
           file: deploy/docker/data/goettingen-topo/Dockerfile
           tags: |
             ghcr.io/cmahnke/map-data/goettingen:topo
@@ -178,6 +181,7 @@ jobs:
           push: true
           context: .
           file: deploy/docker/data/Dockerfile
+          network: host
           build-args: |
             COVERAGE=bremerhaven.json
             MAX_ZOOM=15
@@ -225,6 +229,7 @@ jobs:
           push: true
           context: .
           file: deploy/docker/data/Dockerfile
+          network: host
           build-args: |
             COVERAGE=sylt.json
             MAX_ZOOM=15
@@ -236,7 +241,7 @@ jobs:
 
   publish_maps:
     name: Publish generated maps
-    needs: [build_goettingen, build_goettingen_topo, build_sylt]
+    needs: [build_goettingen, build_goettingen_topo, build_sylt, build_bremerhaven]
     runs-on: ubuntu-latest
     permissions:
       contents: write
