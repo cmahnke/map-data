@@ -254,7 +254,7 @@ jobs:
 
       - name: Extract map data from Docker images
         run: |
-          mkdir -p public/sylt public/goettingen
+          mkdir -p public/sylt public/goettingen public/bremerhaven
 
           # Extract Sylt
           docker create --name temp_sylt ghcr.io/cmahnke/map-data/sylt:latest
@@ -270,6 +270,11 @@ jobs:
           docker create --name temp_goettingen_topo ghcr.io/cmahnke/map-data/goettingen:topo
           docker cp temp_goettingen_topo:/data/. public/goettingen/
           docker rm temp_goettingen_topo
+
+          # Extract Bremerhaven
+          docker create --name temp_bremerhaven ghcr.io/cmahnke/map-data/bremerhaven:latest
+          docker cp temp_bremerhaven:/data/. public/bremerhaven/
+          docker rm temp_bremerhaven
 
       - name: Deploy to GitHub Pages branch
         uses: peaceiris/actions-gh-pages@v4
