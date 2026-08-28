@@ -10,7 +10,7 @@
     "minzoom": "0",
     "maxzoom": "16",
     "json": "{\"vector_layers\":[{\"id\":\"boundary\",\"fields\":{\"admin_level\":\"Number\",\"disputed\":\"Number\",\"maritime\":\"Number\"},\"minzoom\":1,\"maxzoom\":4},{\"id\":\"landuse\",\"fields\":{\"class\":\"String\"},\"minzoom\":5,\"maxzoom\":5},{\"id\":\"water\",\"fields\":{\"class\":\"String\"},\"minzoom\":0,\"maxzoom\":5}]}",
-    "planetiler:buildtime": "2026-08-10T15:25:30.547Z",
+    "planetiler:buildtime": "2026-08-26T21:05:30.679Z",
     "planetiler:githash": "9af082335256c2eb0e15c5dc5c842d24437bbe2a",
     "planetiler:osm:osmosisreplicationseq": "0",
     "planetiler:osm:osmosisreplicationtime": "1970-01-01T00:00:00Z",
